@@ -1,4 +1,5 @@
 ipython
+pinecone-client
 numpy
 pandas
 plotly.express

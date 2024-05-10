@@ -1,6 +1,9 @@
 import os
 import langchain
 import langchain_openai
+#Load API keys
+from dotenv import load_dotenv, find_dotenv
+load_dotenv(find_dotenv(), override=True)
 
 
 from dotenv import load_dotenv, find_dotenv

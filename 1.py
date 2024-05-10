@@ -1,6 +1,11 @@
 import numpy as np
 import pandas as pd
 import plotly.express as px
+import os
+#Load API keys
+from dotenv import load_dotenv, find_dotenv
+load_dotenv(find_dotenv(), override=True)
+
 
 #Using Numpy
 #generate random numbers from uniform distribution between 0 and 1
@@ -20,9 +25,6 @@ fig = px.line(data, x='x', y = 'y')
 fig.show()
 
 
-import os
-from dotenv import load_dotenv, find_dotenv
-load_dotenv(find_dotenv(), override=True)
 
 #os.environ.get('OPENAI_API_KEY')
 

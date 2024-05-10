@@ -1,3 +1,8 @@
+#Load API keys
+import os
+from dotenv import load_dotenv, find_dotenv
+load_dotenv(find_dotenv(), override=True)
+
 #Langchain Tools - Search with DuckDuckGo and Wikipedia
 #pip install duckduckgo-search
 from langchain_community.tools import DuckDuckGoSearchRun
