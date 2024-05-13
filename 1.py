@@ -28,5 +28,3 @@ fig.show()
 
 #os.environ.get('OPENAI_API_KEY')
 
-
-from 

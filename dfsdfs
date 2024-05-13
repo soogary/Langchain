@@ -1,0 +1,575 @@
+Help on class ChatOpenAI in module langchain_openai.chat_models.base:
+
+class CChhaattOOppeennAAII(BaseChatOpenAI)
+ |  ChatOpenAI(*, name: Union[str, NoneType] = None, cache: ForwardRef('Union[BaseCache, bool, None]') = None, verbose: bool = None, callbacks: ForwardRef('Callbacks') = None, tags: Union[List[str], NoneType] = None, metadata: Union[Dict[str, Any], NoneType] = None, custom_get_token_ids: Union[Callable[[str], List[int]], NoneType] = None, callback_manager: Union[langchain_core.callbacks.base.BaseCallbackManager, NoneType] = None, client: Any = None, async_client: Any = None, model: str = 'gpt-3.5-turbo', temperature: float = 0.7, model_kwargs: Dict[str, Any] = None, api_key: Union[pydantic.v1.types.SecretStr, NoneType] = None, base_url: Union[str, NoneType] = None, organization: Union[str, NoneType] = None, openai_proxy: Union[str, NoneType] = None, timeout: Union[float, Tuple[float, float], Any, NoneType] = None, max_retries: int = 2, streaming: bool = False, n: int = 1, max_tokens: Union[int, NoneType] = None, tiktoken_model_name: Union[str, NoneType] = None, default_headers: Union[Mapping[str, str], NoneType] = None, default_query: Union[Mapping[str, object], NoneType] = None, http_client: Union[Any, NoneType] = None, http_async_client: Union[Any, NoneType] = None) -> None
+ |  
+ |  `OpenAI` Chat large language models API.
+ |  
+ |  To use, you should have the environment variable ``OPENAI_API_KEY``
+ |  set with your API key, or pass it as a named parameter to the constructor.
+ |  
+ |  Any parameters that are valid to be passed to the openai.create call can be passed
+ |  in, even if not explicitly saved on this class.
+ |  
+ |  Example:
+ |      .. code-block:: python
+ |  
+ |          from langchain_openai import ChatOpenAI
+ |  
+ |          model = ChatOpenAI(model="gpt-3.5-turbo")
+ |  
+ |  Method resolution order:
+ |      ChatOpenAI
+ |      BaseChatOpenAI
+ |      langchain_core.language_models.chat_models.BaseChatModel
+ |      langchain_core.language_models.base.BaseLanguageModel
+ |      langchain_core.runnables.base.RunnableSerializable
+ |      langchain_core.load.serializable.Serializable
+ |      pydantic.v1.main.BaseModel
+ |      pydantic.v1.utils.Representation
+ |      langchain_core.runnables.base.Runnable
+ |      typing.Generic
+ |      abc.ABC
+ |      builtins.object
+ |  
+ |  Class methods defined here:
+ |  
+ |  ggeett__llcc__nnaammeessppaaccee() -> 'List[str]' from pydantic.v1.main.ModelMetaclass
+ |      Get the namespace of the langchain object.
+ |  
+ |  iiss__llcc__sseerriiaalliizzaabbllee() -> 'bool' from pydantic.v1.main.ModelMetaclass
+ |      Return whether this model can be serialized by Langchain.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Static methods defined here:
+ |  
+ |  ____jjssoonn__eennccooddeerr____ = pydantic_encoder(obj: Any) -> Any
+ |  
+ |  ----------------------------------------------------------------------
+ |  Readonly properties defined here:
+ |  
+ |  llcc__aattttrriibbuutteess
+ |      List of attribute names that should be included in the serialized kwargs.
+ |      
+ |      These attributes must be accepted by the constructor.
+ |  
+ |  llcc__sseeccrreettss
+ |      A map of constructor argument names to secret ids.
+ |      
+ |      For example,
+ |          {"openai_api_key": "OPENAI_API_KEY"}
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes defined here:
+ |  
+ |  ____aabbssttrraaccttmmeetthhooddss____ = frozenset()
+ |  
+ |  ____ccllaassss__vvaarrss____ = set()
+ |  
+ |  ____ccoonnffiigg____ = <class 'pydantic.v1.config.Config'>
+ |      Configuration for this pydantic object.
+ |  
+ |  ____ccuussttoomm__rroooott__ttyyppee____ = False
+ |  
+ |  ____eexxcclluuddee__ffiieellddss____ = {'async_client': True, 'callback_manager': True, ...
+ |  
+ |  ____ffiieellddss____ = {'async_client': ModelField(name='async_client', type=Opt...
+ |  
+ |  ____hhaasshh____ = None
+ |  
+ |  ____iinncclluuddee__ffiieellddss____ = None
+ |  
+ |  ____ppaarraammeetteerrss____ = ()
+ |  
+ |  ____ppoosstt__rroooott__vvaalliiddaattoorrss____ = [(False, <function BaseChatModel.raise_depr...
+ |  
+ |  ____pprree__rroooott__vvaalliiddaattoorrss____ = [<function BaseChatOpenAI.build_extra>]
+ |  
+ |  ____pprriivvaattee__aattttrriibbuutteess____ = {}
+ |  
+ |  ____sscchheemmaa__ccaacchhee____ = {}
+ |  
+ |  ____ssiiggnnaattuurree____ = <Signature (*, name: Union[str, NoneType] = None...ync...
+ |  
+ |  ____vvaalliiddaattoorrss____ = {'verbose': [<pydantic.v1.class_validators.Validator ...
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from BaseChatOpenAI:
+ |  
+ |  bbiinndd__ffuunnccttiioonnss(self, functions: 'Sequence[Union[Dict[str, Any], Type[BaseModel], Callable, BaseTool]]', function_call: "Optional[Union[_FunctionCall, str, Literal[('auto', 'none')]]]" = None, **kwargs: 'Any') -> 'Runnable[LanguageModelInput, BaseMessage]'
+ |      Bind functions (and other objects) to this chat model.
+ |      
+ |      Assumes model is compatible with OpenAI function-calling API.
+ |      
+ |      NOTE: Using bind_tools is recommended instead, as the `functions` and
+ |          `function_call` request parameters are officially marked as deprecated by
+ |          OpenAI.
+ |      
+ |      Args:
+ |          functions: A list of function definitions to bind to this chat model.
+ |              Can be  a dictionary, pydantic model, or callable. Pydantic
+ |              models and callables will be automatically converted to
+ |              their schema dictionary representation.
+ |          function_call: Which function to require the model to call.
+ |              Must be the name of the single provided function or
+ |              "auto" to automatically determine which function to call
+ |              (if any).
+ |          **kwargs: Any additional parameters to pass to the
+ |              :class:`~langchain.runnable.Runnable` constructor.
+ |  
+ |  bbiinndd__ttoooollss(self, tools: 'Sequence[Union[Dict[str, Any], Type[BaseModel], Callable, BaseTool]]', *, tool_choice: "Optional[Union[dict, str, Literal[('auto', 'none', 'required', 'any')], bool]]" = None, **kwargs: 'Any') -> 'Runnable[LanguageModelInput, BaseMessage]'
+ |      Bind tool-like objects to this chat model.
+ |      
+ |      Assumes model is compatible with OpenAI tool-calling API.
+ |      
+ |      Args:
+ |          tools: A list of tool definitions to bind to this chat model.
+ |              Can be  a dictionary, pydantic model, callable, or BaseTool. Pydantic
+ |              models, callables, and BaseTools will be automatically converted to
+ |              their schema dictionary representation.
+ |          tool_choice: Which tool to require the model to call.
+ |              Options are:
+ |              name of the tool (str): calls corresponding tool;
+ |              "auto": automatically selects a tool (including no tool);
+ |              "none": does not call a tool;
+ |              "any" or "required": force at least one tool to be called;
+ |              True: forces tool call (requires `tools` be length 1);
+ |              False: no effect;
+ |      
+ |              or a dict of the form:
+ |              {"type": "function", "function": {"name": <<tool_name>>}}.
+ |          **kwargs: Any additional parameters to pass to the
+ |              :class:`~langchain.runnable.Runnable` constructor.
+ |  
+ |  ggeett__nnuumm__ttookkeennss__ffrroomm__mmeessssaaggeess(self, messages: 'List[BaseMessage]') -> 'int'
+ |      Calculate num tokens for gpt-3.5-turbo and gpt-4 with tiktoken package.
+ |      
+ |      Official documentation: https://github.com/openai/openai-cookbook/blob/
+ |      main/examples/How_to_format_inputs_to_ChatGPT_models.ipynb
+ |  
+ |  ggeett__ttookkeenn__iiddss(self, text: 'str') -> 'List[int]'
+ |      Get the tokens present in the text with tiktoken package.
+ |  
+ |  wwiitthh__ssttrruuccttuurreedd__oouuttppuutt(self, schema: 'Optional[_DictOrPydanticClass]' = None, *, method: "Literal[('function_calling', 'json_mode')]" = 'function_calling', include_raw: 'bool' = False, **kwargs: 'Any') -> 'Runnable[LanguageModelInput, _DictOrPydantic]'
+ |      Model wrapper that returns outputs formatted to match the given schema.
+ |      
+ |              Args:
+ |                  schema: The output schema as a dict or a Pydantic class. If a Pydantic class
+ |                      then the model output will be an object of that class. If a dict then
+ |                      the model output will be a dict. With a Pydantic class the returned
+ |                      attributes will be validated, whereas with a dict they will not be. If
+ |                      `method` is "function_calling" and `schema` is a dict, then the dict
+ |                      must match the OpenAI function-calling spec or be a valid JSON schema
+ |                      with top level 'title' and 'description' keys specified.
+ |                  method: The method for steering model generation, either "function_calling"
+ |                      or "json_mode". If "function_calling" then the schema will be converted
+ |                      to an OpenAI function and the returned model will make use of the
+ |                      function-calling API. If "json_mode" then OpenAI's JSON mode will be
+ |                      used. Note that if using "json_mode" then you must include instructions
+ |                      for formatting the output into the desired schema into the model call.
+ |                  include_raw: If False then only the parsed structured output is returned. If
+ |                      an error occurs during model output parsing it will be raised. If True
+ |                      then both the raw model response (a BaseMessage) and the parsed model
+ |                      response will be returned. If an error occurs during output parsing it
+ |                      will be caught and returned as well. The final output is always a dict
+ |                      with keys "raw", "parsed", and "parsing_error".
+ |      
+ |              Returns:
+ |                  A Runnable that takes any ChatModel input and returns as output:
+ |      
+ |                      If include_raw is True then a dict with keys:
+ |                          raw: BaseMessage
+ |                          parsed: Optional[_DictOrPydantic]
+ |                          parsing_error: Optional[BaseException]
+ |      
+ |                      If include_raw is False then just _DictOrPydantic is returned,
+ |                      where _DictOrPydantic depends on the schema:
+ |      
+ |                      If schema is a Pydantic class then _DictOrPydantic is the Pydantic
+ |                          class.
+ |      
+ |                      If schema is a dict then _DictOrPydantic is a dict.
+ |      
+ |              Example: Function-calling, Pydantic schema (method="function_calling", include_raw=False):
+ |                  .. code-block:: python
+ |      
+ |                      from langchain_openai import ChatOpenAI
+ |                      from langchain_core.pydantic_v1 import BaseModel
+ |      
+ |                      class AnswerWithJustification(BaseModel):
+ |                          '''An answer to the user question along with justification for the answer.'''
+ |                          answer: str
+ |                          justification: str
+ |      
+ |                      llm = ChatOpenAI(model="gpt-3.5-turbo-0125", temperature=0)
+ |                      structured_llm = llm.with_structured_output(AnswerWithJustification)
+ |      
+ |                      structured_llm.invoke("What weighs more a pound of bricks or a pound of feathers")
+ |      
+ |                      # -> AnswerWithJustification(
+ |                      #     answer='They weigh the same',
+ |                      #     justification='Both a pound of bricks and a pound of feathers weigh one pound. The weight is the same, but the volume or density of the objects may differ.'
+ |                      # )
+ |      
+ |              Example: Function-calling, Pydantic schema (method="function_calling", include_raw=True):
+ |                  .. code-block:: python
+ |      
+ |                      from langchain_openai import ChatOpenAI
+ |                      from langchain_core.pydantic_v1 import BaseModel
+ |      
+ |                      class AnswerWithJustification(BaseModel):
+ |                          '''An answer to the user question along with justification for the answer.'''
+ |                          answer: str
+ |                          justification: str
+ |      
+ |                      llm = ChatOpenAI(model="gpt-3.5-turbo-0125", temperature=0)
+ |                      structured_llm = llm.with_structured_output(AnswerWithJustification, include_raw=True)
+ |      
+ |                      structured_llm.invoke("What weighs more a pound of bricks or a pound of feathers")
+ |                      # -> {
+ |                      #     'raw': AIMessage(content='', additional_kwargs={'tool_calls': [{'id': 'call_Ao02pnFYXD6GN1yzc0uXPsvF', 'function': {'arguments': '{"answer":"They weigh the same.","justification":"Both a pound of bricks and a pound of feathers weigh one pound. The weight is the same, but the volume or density of the objects may differ."}', 'name': 'AnswerWithJustification'}, 'type': 'function'}]}),
+ |                      #     'parsed': AnswerWithJustification(answer='They weigh the same.', justification='Both a pound of bricks and a pound of feathers weigh one pound. The weight is the same, but the volume or density of the objects may differ.'),
+ |                      #     'parsing_error': None
+ |                      # }
+ |      
+ |              Example: Function-calling, dict schema (method="function_calling", include_raw=False):
+ |                  .. code-block:: python
+ |      
+ |                      from langchain_openai import ChatOpenAI
+ |                      from langchain_core.pydantic_v1 import BaseModel
+ |                      from langchain_core.utils.function_calling import convert_to_openai_tool
+ |      
+ |                      class AnswerWithJustification(BaseModel):
+ |                          '''An answer to the user question along with justification for the answer.'''
+ |                          answer: str
+ |                          justification: str
+ |      
+ |                      dict_schema = convert_to_openai_tool(AnswerWithJustification)
+ |                      llm = ChatOpenAI(model="gpt-3.5-turbo-0125", temperature=0)
+ |                      structured_llm = llm.with_structured_output(dict_schema)
+ |      
+ |                      structured_llm.invoke("What weighs more a pound of bricks or a pound of feathers")
+ |                      # -> {
+ |                      #     'answer': 'They weigh the same',
+ |                      #     'justification': 'Both a pound of bricks and a pound of feathers weigh one pound. The weight is the same, but the volume and density of the two substances differ.'
+ |                      # }
+ |      
+ |              Example: JSON mode, Pydantic schema (method="json_mode", include_raw=True):
+ |                  .. code-block::
+ |      
+ |                      from langchain_openai import ChatOpenAI
+ |                      from langchain_core.pydantic_v1 import BaseModel
+ |      
+ |                      class AnswerWithJustification(BaseModel):
+ |                          answer: str
+ |                          justification: str
+ |      
+ |                      llm = ChatOpenAI(model="gpt-3.5-turbo-0125", temperature=0)
+ |                      structured_llm = llm.with_structured_output(
+ |                          AnswerWithJustification,
+ |                          method="json_mode",
+ |                          include_raw=True
+ |                      )
+ |      
+ |                      structured_llm.invoke(
+ |                          "Answer the following question. "
+ |                          "Make sure to return a JSON blob with keys 'answer' and 'justification'.
+ |      
+ |      "
+ |                          "What's heavier a pound of bricks or a pound of feathers?"
+ |                      )
+ |                      # -> {
+ |                      #     'raw': AIMessage(content='{
+ |          "answer": "They are both the same weight.",
+ |          "justification": "Both a pound of bricks and a pound of feathers weigh one pound. The difference lies in the volume and density of the materials, not the weight." 
+ |      }'),
+ |                      #     'parsed': AnswerWithJustification(answer='They are both the same weight.', justification='Both a pound of bricks and a pound of feathers weigh one pound. The difference lies in the volume and density of the materials, not the weight.'),
+ |                      #     'parsing_error': None
+ |                      # }
+ |      
+ |              Example: JSON mode, no schema (schema=None, method="json_mode", include_raw=True):
+ |                  .. code-block::
+ |      
+ |                      from langchain_openai import ChatOpenAI
+ |      
+ |                      structured_llm = llm.with_structured_output(method="json_mode", include_raw=True)
+ |      
+ |                      structured_llm.invoke(
+ |                          "Answer the following question. "
+ |                          "Make sure to return a JSON blob with keys 'answer' and 'justification'.
+ |      
+ |      "
+ |                          "What's heavier a pound of bricks or a pound of feathers?"
+ |                      )
+ |                      # -> {
+ |                      #     'raw': AIMessage(content='{
+ |          "answer": "They are both the same weight.",
+ |          "justification": "Both a pound of bricks and a pound of feathers weigh one pound. The difference lies in the volume and density of the materials, not the weight." 
+ |      }'),
+ |                      #     'parsed': {
+ |                      #         'answer': 'They are both the same weight.',
+ |                      #         'justification': 'Both a pound of bricks and a pound of feathers weigh one pound. The difference lies in the volume and density of the materials, not the weight.'
+ |                      #     },
+ |                      #     'parsing_error': None
+ |                      # }
+ |  
+ |  ----------------------------------------------------------------------
+ |  Class methods inherited from BaseChatOpenAI:
+ |  
+ |  bbuuiilldd__eexxttrraa(values: 'Dict[str, Any]') -> 'Dict[str, Any]' from pydantic.v1.main.ModelMetaclass
+ |      Build extra kwargs from additional params that were passed in.
+ |  
+ |  vvaalliiddaattee__eennvviirroonnmmeenntt(values: 'Dict') -> 'Dict' from pydantic.v1.main.ModelMetaclass
+ |      Validate that api key and python package exists in environment.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes inherited from BaseChatOpenAI:
+ |  
+ |  CCoonnffiigg = <class 'langchain_openai.chat_models.base.BaseChatOpenAI.Conf...
+ |      Configuration for this pydantic object.
+ |  
+ |  ____aannnnoottaattiioonnss____ = {'async_client': 'Any', 'client': 'Any', 'default_he...
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from langchain_core.language_models.chat_models.BaseChatModel:
+ |  
+ |  ____ccaallll____(self, messages: 'List[BaseMessage]', stop: 'Optional[List[str]]' = None, callbacks: 'Callbacks' = None, **kwargs: 'Any') -> 'BaseMessage'
+ |      [*Deprecated*] 
+ |      
+ |      Notes
+ |      -----
+ |      .. deprecated:: langchain-core==0.1.7
+ |         Use invoke instead.
+ |  
+ |  async aaggeenneerraattee(self, messages: 'List[List[BaseMessage]]', stop: 'Optional[List[str]]' = None, callbacks: 'Callbacks' = None, *, tags: 'Optional[List[str]]' = None, metadata: 'Optional[Dict[str, Any]]' = None, run_name: 'Optional[str]' = None, run_id: 'Optional[uuid.UUID]' = None, **kwargs: 'Any') -> 'LLMResult'
+ |      Asynchronously pass a sequence of prompts to a model and return generations.
+ |      
+ |      This method should make use of batched calls for models that expose a batched
+ |      API.
+ |      
+ |      Use this method when you want to:
+ |          1. take advantage of batched calls,
+ |          2. need more output from the model than just the top generated value,
+ |          3. are building chains that are agnostic to the underlying language model
+ |              type (e.g., pure text completion models vs chat models).
+ |      
+ |      Args:
+ |          messages: List of list of messages.
+ |          stop: Stop words to use when generating. Model output is cut off at the
+ |              first occurrence of any of these substrings.
+ |          callbacks: Callbacks to pass through. Used for executing additional
+ |              functionality, such as logging or streaming, throughout generation.
+ |          **kwargs: Arbitrary additional keyword arguments. These are usually passed
+ |              to the model provider API call.
+ |      
+ |      Returns:
+ |          An LLMResult, which contains a list of candidate Generations for each input
+ |              prompt and additional model provider-specific output.
+ |  
+ |  async aaggeenneerraattee__pprroommpptt(self, prompts: 'List[PromptValue]', stop: 'Optional[List[str]]' = None, callbacks: 'Callbacks' = None, **kwargs: 'Any') -> 'LLMResult'
+ |      Asynchronously pass a sequence of prompts and return model generations.
+ |      
+ |      This method should make use of batched calls for models that expose a batched
+ |      API.
+ |      
+ |      Use this method when you want to:
+ |          1. take advantage of batched calls,
+ |          2. need more output from the model than just the top generated value,
+ |          3. are building chains that are agnostic to the underlying language model
+ |              type (e.g., pure text completion models vs chat models).
+ |      
+ |      Args:
+ |          prompts: List of PromptValues. A PromptValue is an object that can be
+ |              converted to match the format of any language model (string for pure
+ |              text generation models and BaseMessages for chat models).
+ |          stop: Stop words to use when generating. Model output is cut off at the
+ |              first occurrence of any of these substrings.
+ |          callbacks: Callbacks to pass through. Used for executing additional
+ |              functionality, such as logging or streaming, throughout generation.
+ |          **kwargs: Arbitrary additional keyword arguments. These are usually passed
+ |              to the model provider API call.
+ |      
+ |      Returns:
+ |          An LLMResult, which contains a list of candidate Generations for each input
+ |              prompt and additional model provider-specific output.
+ |  
+ |  async aaiinnvvookkee(self, input: 'LanguageModelInput', config: 'Optional[RunnableConfig]' = None, *, stop: 'Optional[List[str]]' = None, **kwargs: 'Any') -> 'BaseMessage'
+ |      Default implementation of ainvoke, calls invoke from a thread.
+ |      
+ |      The default implementation allows usage of async code even if
+ |      the runnable did not implement a native async version of invoke.
+ |      
+ |      Subclasses should override this method if they can run asynchronously.
+ |  
+ |  async aapprreeddiicctt(self, text: 'str', *, stop: 'Optional[Sequence[str]]' = None, **kwargs: 'Any') -> 'str'
+ |      [*Deprecated*] 
+ |      
+ |      Notes
+ |      -----
+ |      .. deprecated:: langchain-core==0.1.7
+ |         Use ainvoke instead.
+ |  
+ |  async aapprreeddiicctt__mmeessssaaggeess(self, messages: 'List[BaseMessage]', *, stop: 'Optional[Sequence[str]]' = None, **kwargs: 'Any') -> 'BaseMessage'
+ |      [*Deprecated*] 
+ |      
+ |      Notes
+ |      -----
+ |      .. deprecated:: langchain-core==0.1.7
+ |         Use ainvoke instead.
+ |  
+ |  async aassttrreeaamm(self, input: 'LanguageModelInput', config: 'Optional[RunnableConfig]' = None, *, stop: 'Optional[List[str]]' = None, **kwargs: 'Any') -> 'AsyncIterator[BaseMessageChunk]'
+ |      Default implementation of astream, which calls ainvoke.
+ |      Subclasses should override this method if they support streaming output.
+ |  
+ |  ccaallll__aass__llllmm(self, message: 'str', stop: 'Optional[List[str]]' = None, **kwargs: 'Any') -> 'str'
+ |      [*Deprecated*] 
+ |      
+ |      Notes
+ |      -----
+ |      .. deprecated:: langchain-core==0.1.7
+ |         Use invoke instead.
+ |  
+ |  ddiicctt(self, **kwargs: 'Any') -> 'Dict'
+ |      Return a dictionary of the LLM.
+ |  
+ |  ggeenneerraattee(self, messages: 'List[List[BaseMessage]]', stop: 'Optional[List[str]]' = None, callbacks: 'Callbacks' = None, *, tags: 'Optional[List[str]]' = None, metadata: 'Optional[Dict[str, Any]]' = None, run_name: 'Optional[str]' = None, run_id: 'Optional[uuid.UUID]' = None, **kwargs: 'Any') -> 'LLMResult'
+ |      Pass a sequence of prompts to the model and return model generations.
+ |      
+ |      This method should make use of batched calls for models that expose a batched
+ |      API.
+ |      
+ |      Use this method when you want to:
+ |          1. take advantage of batched calls,
+ |          2. need more output from the model than just the top generated value,
+ |          3. are building chains that are agnostic to the underlying language model
+ |              type (e.g., pure text completion models vs chat models).
+ |      
+ |      Args:
+ |          messages: List of list of messages.
+ |          stop: Stop words to use when generating. Model output is cut off at the
+ |              first occurrence of any of these substrings.
+ |          callbacks: Callbacks to pass through. Used for executing additional
+ |              functionality, such as logging or streaming, throughout generation.
+ |          **kwargs: Arbitrary additional keyword arguments. These are usually passed
+ |              to the model provider API call.
+ |      
+ |      Returns:
+ |          An LLMResult, which contains a list of candidate Generations for each input
+ |              prompt and additional model provider-specific output.
+ |  
+ |  ggeenneerraattee__pprroommpptt(self, prompts: 'List[PromptValue]', stop: 'Optional[List[str]]' = None, callbacks: 'Callbacks' = None, **kwargs: 'Any') -> 'LLMResult'
+ |      Pass a sequence of prompts to the model and return model generations.
+ |      
+ |      This method should make use of batched calls for models that expose a batched
+ |      API.
+ |      
+ |      Use this method when you want to:
+ |          1. take advantage of batched calls,
+ |          2. need more output from the model than just the top generated value,
+ |          3. are building chains that are agnostic to the underlying language model
+ |              type (e.g., pure text completion models vs chat models).
+ |      
+ |      Args:
+ |          prompts: List of PromptValues. A PromptValue is an object that can be
+ |              converted to match the format of any language model (string for pure
+ |              text generation models and BaseMessages for chat models).
+ |          stop: Stop words to use when generating. Model output is cut off at the
+ |              first occurrence of any of these substrings.
+ |          callbacks: Callbacks to pass through. Used for executing additional
+ |              functionality, such as logging or streaming, throughout generation.
+ |          **kwargs: Arbitrary additional keyword arguments. These are usually passed
+ |              to the model provider API call.
+ |      
+ |      Returns:
+ |          An LLMResult, which contains a list of candidate Generations for each input
+ |              prompt and additional model provider-specific output.
+ |  
+ |  iinnvvookkee(self, input: 'LanguageModelInput', config: 'Optional[RunnableConfig]' = None, *, stop: 'Optional[List[str]]' = None, **kwargs: 'Any') -> 'BaseMessage'
+ |      Transform a single input into an output. Override to implement.
+ |      
+ |      Args:
+ |          input: The input to the runnable.
+ |          config: A config to use when invoking the runnable.
+ |             The config supports standard keys like 'tags', 'metadata' for tracing
+ |             purposes, 'max_concurrency' for controlling how much work to do
+ |             in parallel, and other keys. Please refer to the RunnableConfig
+ |             for more details.
+ |      
+ |      Returns:
+ |          The output of the runnable.
+ |  
+ |  pprreeddiicctt(self, text: 'str', *, stop: 'Optional[Sequence[str]]' = None, **kwargs: 'Any') -> 'str'
+ |      [*Deprecated*] 
+ |      
+ |      Notes
+ |      -----
+ |      .. deprecated:: langchain-core==0.1.7
+ |         Use invoke instead.
+ |  
+ |  pprreeddiicctt__mmeessssaaggeess(self, messages: 'List[BaseMessage]', *, stop: 'Optional[Sequence[str]]' = None, **kwargs: 'Any') -> 'BaseMessage'
+ |      [*Deprecated*] 
+ |      
+ |      Notes
+ |      -----
+ |      .. deprecated:: langchain-core==0.1.7
+ |         Use invoke instead.
+ |  
+ |  ssttrreeaamm(self, input: 'LanguageModelInput', config: 'Optional[RunnableConfig]' = None, *, stop: 'Optional[List[str]]' = None, **kwargs: 'Any') -> 'Iterator[BaseMessageChunk]'
+ |      Default implementation of stream, which calls invoke.
+ |      Subclasses should override this method if they support streaming output.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Class methods inherited from langchain_core.language_models.chat_models.BaseChatModel:
+ |  
+ |  rraaiissee__ddeepprreeccaattiioonn(values: 'Dict') -> 'Dict' from pydantic.v1.main.ModelMetaclass
+ |      Raise deprecation warning if callback_manager is used.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Readonly properties inherited from langchain_core.language_models.chat_models.BaseChatModel:
+ |  
+ |  OOuuttppuuttTTyyppee
+ |      Get the output type for this runnable.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes inherited from langchain_core.language_models.chat_models.BaseChatModel:
+ |  
+ |  ____oorriigg__bbaasseess____ = (langchain_core.language_models.base.BaseLanguageMode...
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from langchain_core.language_models.base.BaseLanguageModel:
+ |  
+ |  ggeett__nnuumm__ttookkeennss(self, text: 'str') -> 'int'
+ |      Get the number of tokens present in the text.
+ |      
+ |      Useful for checking if an input will fit in a model's context window.
+ |      
+ |      Args:
+ |          text: The string input to tokenize.
+ |      
+ |      Returns:
+ |          The integer number of tokens in the text.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Class methods inherited from langchain_core.language_models.base.BaseLanguageModel:
+ |  
+ |  sseett__vveerrbboossee(verbose: 'Optional[bool]') -> 'bool' from pydantic.v1.main.ModelMetaclass
+ |      If verbose is None, set it.
+ |      
+ |      This allows users to pass in None as verbose to access the global setting.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Readonly properties inherited from langchain_core.language_models.base.BaseLanguageModel:
+ |  
+ |  IInnppuuttTTyyppee
+ |      Get the input type for this runnable.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from langchain_core.runnables.base.RunnableSerializable:
+ |  
+ |  ccoonnffiigguurraabbllee__aalltteerrnnaattiivveess(self, which: 'ConfigurableField', *, default_key: 'str' = 'default', prefix_keys: 'bool' = False, **kwargs: 'Union[Runnable[Input, Output], Callable[[], Runnable[Input, Output]]]') -> 'RunnableSerializable[Input, Output]'
+ |      Configure alternatives for runnables that can be set at runtime.
+ |      
+ |      .. code-block:: python
+ |      
+ |          from langchain_anthropic import ChatAnthropic
+ |          from langchain_core.runnables.utils import ConfigurableFiel

@@ -131,4 +131,17 @@ reponse = llm1.invoke(prompt)
 print(response.content)
 # expect the request to be blocked
 
+from langchain_google_genai import HarmCategory, HarmBlockThreshold
+llm2 = ChatGoogleGenerativeAI(
+    model='gemini-pro',
+    safety_settings={
+        HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_NONE,
+        HarmCategory.HARM_CATEGORY_HARRASSMENT: HarmBlockThreshold.BLOCK_ONLY_HIGH
+    }
+)
+
+response = llm2.invoke(prompt)
+print(response.content)
+#view the behavior / message
+
 
