@@ -99,6 +99,7 @@ if step==2:
         # Q4. " What questions did i ask?"
 
 
+#example 3  memory and history store 
 # Saving chat sessions to a JSON file (or database is also possible)
 if step==3:
 
