@@ -16,4 +16,6 @@ pypdf
 requests
 aiohttp
 PyYAML
+docx2txt
+wikipedia
 
