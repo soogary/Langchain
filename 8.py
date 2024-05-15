@@ -23,7 +23,7 @@ load_dotenv(find_dotenv(), override=True)
 
 #pip install pypdf
 
-step = 7
+step = 6
 
 #Loading PDFs
 if step==1:
@@ -360,7 +360,7 @@ if step==9:
                 spec=PodSpec(environment='gcp-starter')
             )
             vector_store = Pinecone.from_documents(chunks, embeddings, index_name=index_name)
-            # process chunks, generates embeddings, inserting index to pinecone and return the vecor store
+            # process chunks, generates embeddings, inserting index to pinecone and return the vector store
             print('ok')
             return vector_store
 
