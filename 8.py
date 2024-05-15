@@ -45,7 +45,7 @@ if step==1:
     print(f'you have {len(data[1]).page_content} characters in the page')
 
 
-# Loader that discoveres different file formats 
+# Loader that discovers different file formats
 if step==2:
 
 #    pip install docx2txt

@@ -1,5 +1,4 @@
 aiohttp
-chromadb
 docx2txt
 ipython
 langchain
@@ -18,3 +17,6 @@ requests
 streamlit
 tiktoken
 wikipedia
+
+
+#chromadb
