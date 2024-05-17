@@ -205,7 +205,7 @@ st.write(number)
 st.subheader("distance converter")
 
 def miles_to_km():
-    st.session_state.km = st.session_state.miles *1.609
+    st.session_state.km = st.session_state.miles * 1.609
 
 def km_to_miles():
     st.session_state.miles = st.session_state.km * 0.621
