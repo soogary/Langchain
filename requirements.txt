@@ -5,6 +5,7 @@ langchain
 langchainhub
 langchain_experimental
 langchain_openai
+#langchain-sap-llm
 numpy
 openai
 pandas
@@ -15,6 +16,7 @@ python-dotenv
 PyYAML
 requests
 streamlit
+streamlit-chat
 tiktoken
 wikipedia
 
